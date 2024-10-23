@@ -7,7 +7,7 @@ use App\Models\Job;
 use   Illuminate\Database\Query\Builder;
 
 
-// Route Home
 Route::view('/', 'home'); 
-Route::resource('jobs', JobController::class);
 Route::view('/contact', 'contact');    
+
+Route::resource('jobs', JobController::class);
