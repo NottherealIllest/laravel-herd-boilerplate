@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+touch('/tmp/database.sqlite');
+
 return [
 
     /*

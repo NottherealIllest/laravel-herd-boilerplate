@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && touch /tmp/database.sqlite",
+        "build": "vite build",
         "vercel-build": "npm run build"
     },
     "devDependencies": {
