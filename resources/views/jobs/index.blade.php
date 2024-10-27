@@ -1,8 +1,5 @@
 <x-layout >
 
-   
-    <style type='text/css'>
-    </style>
 
     <x-slot:heading>
    Jobs Listings

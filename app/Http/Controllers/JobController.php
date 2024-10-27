@@ -1,9 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Job;
 
+use App\Mail\JobPosted;
+use App\Models\Job;
+use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth as AuthFacades;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Mail;
+
 
 class JobController extends Controller
 {
@@ -33,11 +40,20 @@ public function store (){
         'salary' => ['required'],
    ]);
 
-    Job::create([
+    $job = Job::create([
         'title' => request('title'),
         'salary' => request('salary'),
         'employer_id' => 1,
     ]);
+
+   
+    Mail::to($job->employer->user->email)->queue(
+        new JobPosted($job)
+    );
+     
+      
+
+     
     // redirect back to the uodated job
     return redirect('jobs/');
 
@@ -46,12 +62,20 @@ public function store (){
 
 
 // edit a Job page
-public function edit (job $job){
-    return view('jobs.edit', ['job' => $job]);
-    
+public function edit(Job $job)
+{
+  
+    // Gate has been deprecated infavor of middleware, added the two gate logic's that were previously used    
+    // Gate::authorize('edit-job', $job);
+    // if (!Gate::allows('edit-job', $job)) {
+    //     abort(403, 'Unauthorized action.');
+    // }
+
+    return view('jobs.edit', ['job' => $job]);  
+  
 }
 
-// Update a job action
+// Update a  job action
 public function update (job $job){
     request()->validate([
         'title'  => ['required', 'min:3'],
