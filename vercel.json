@@ -1,4 +1,3 @@
-
 {
     "version": 2,
     "framework": null,
@@ -29,5 +28,4 @@
         "SESSION_DRIVER": "cookie"
     }
 }
-
 
