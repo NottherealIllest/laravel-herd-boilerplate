@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Str;
 
-touch('/var/task/user/storage/database.sqlite');
 
 return [
 
