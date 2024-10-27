@@ -11,6 +11,15 @@
         }
     ],
     "outputDirectory": "public",
+    "builds": [
+        {
+            "src": "build.sh",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "public"
+            }
+        }
+    ],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
